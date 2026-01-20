@@ -205,3 +205,48 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# ========================================
+# ML Project Specific
+# ========================================
+
+# Artifacts - trained models and data
+artifacts/
+*.pkl
+*.h5
+*.joblib
+*.model
+
+# Logs
+logs/
+*.log
+
+# Jupyter Notebooks outputs
+*.ipynb_checkpoints
+
+# Data files  
+*.csv
+!notebook/data/Students.csv  # Keep original dataset
+
+# Temporary output files
+pipeline_output.txt
+*.txt
+
+# Flask session files
+flask_session/
+
+# Virtual environments (conda)
+env/
+venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary Python files
+*.pyc
+__pycache__/

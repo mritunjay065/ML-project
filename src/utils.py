@@ -39,6 +39,27 @@ def save_object(file_path: str, obj: object) -> None:
         raise CustomException(e, sys)
 
 
+def load_object(file_path: str):
+    """Loads a Python object from a file using pickle.
+
+    Parameters
+    ----------
+    file_path : str
+        The path to the saved object file.
+
+    Returns
+    -------
+    object
+        The loaded Python object.
+    """
+    try:
+        with open(file_path, 'rb') as file_obj:
+            return dill.load(file_obj)
+    except Exception as e:
+        logging.error("Failed to load object from %s: %s", file_path, str(e))
+        raise CustomException(e, sys)
+
+
 def evaluate_models(X_train, y_train, X_test, y_test, models, param):
     """
     Evaluate multiple models with hyperparameter tuning using GridSearchCV.
