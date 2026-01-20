@@ -81,12 +81,22 @@ class DataIngestion:
 if __name__ == "__main__":
 	obj = DataIngestion()
 	# Provide the default file path for Students.csv
-	obj.initiate_data_ingestion(r'notebook\\data\\Students.csv')
 	train_data, test_data = obj.initiate_data_ingestion(
 		r'notebook\data\Students.csv'
 	)
+	
 	data_transformation = DataTransformation()
-	data_transformation.initiate_data_transformation(
+	train_arr, test_arr, _ = data_transformation.initiate_data_transformation(
 		train_path=train_data,
 		test_path=test_data
 	)
+	
+	from src.components.model_trainer import ModelTrainer
+	model_trainer = ModelTrainer()
+	r2_score_result = model_trainer.initiate_model_trainer(train_arr, test_arr)
+	print("\n" + "=" * 60)
+	print("MODEL TRAINING COMPLETE!")
+	print("=" * 60)
+	print(f"Best Model R2 Score: {r2_score_result:.4f}")
+	print("Check logs for detailed metrics (MAE, RMSE, MSE) and hyperparameters")
+	print("=" * 60)
